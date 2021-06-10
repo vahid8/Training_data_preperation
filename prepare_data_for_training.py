@@ -65,6 +65,7 @@ if __name__ == '__main__':
     detection_path = config["detection_path"]
     output_image_path = config["output_image_path"]
     output_detection_path = config["output_detection_path"]
+    create_new_images = False
 
     zones = [[(0, 1100), (2000, 3100)], [(2000, 1100), (4000, 3100)], [(4000, 1100), (6000, 3100)],
              [(6000, 1100), (8000, 3100)]]
@@ -76,15 +77,16 @@ if __name__ == '__main__':
         image_name_path = os.path.join(image_path, item)
         detect = os.path.join(detection_path, item[:-3] + "txt")
         im = cv2.imread(image_name_path)
-        im1 = im[1100:3100, 0:2000]
-        im2 = im[1100:3100, 2000:4000]
-        im3 = im[1100:3100, 4000:6000]
-        im4 = im[1100:3100, 6000:8000]
+        if create_new_images:
+            im1 = im[1100:3100, 0:2000]
+            im2 = im[1100:3100, 2000:4000]
+            im3 = im[1100:3100, 4000:6000]
+            im4 = im[1100:3100, 6000:8000]
 
-        cv2.imwrite(os.path.join(output_image_path, item[:-4] + "_1.jpg"), im1)
-        cv2.imwrite(os.path.join(output_image_path, item[:-4] + "_2.jpg"), im2)
-        cv2.imwrite(os.path.join(output_image_path, item[:-4] + "_3.jpg"), im3)
-        cv2.imwrite(os.path.join(output_image_path, item[:-4] + "_4.jpg"), im4)
+            cv2.imwrite(os.path.join(output_image_path, item[:-4] + "_1.jpg"), im1)
+            cv2.imwrite(os.path.join(output_image_path, item[:-4] + "_2.jpg"), im2)
+            cv2.imwrite(os.path.join(output_image_path, item[:-4] + "_3.jpg"), im3)
+            cv2.imwrite(os.path.join(output_image_path, item[:-4] + "_4.jpg"), im4)
         # 3. split texts in 4 texts and in correct positions
         with open(detect) as file:
             content = file.read().split("\n")

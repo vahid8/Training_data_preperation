@@ -1,8 +1,8 @@
 # Input Directories
-image_path: "/media/vahid/Elements/Data/sample_images/trimble_pano"
-detection_path: "/media/vahid/Elements/Data/sample_images/trimble_pano_detection"
-output_image_path: "/media/vahid/Elements/Data/sample_images/ready/images"
-output_detection_path: "/media/vahid/Elements/Data/sample_images/ready/texts"
+image_path: "/media/dev2/A/improvements/Datadev/Stadt Essen_2021_2/src"
+detection_path: "/media/dev2/A/improvements/Datadev/Stadt Essen_2021_2/original_detections"
+output_image_path: "/media/dev2/A/improvements/improvements_splitted/Stadt Essen_2021_2/images"
+output_detection_path: "/media/dev2/A/improvements/improvements_splitted/Stadt Essen_2021_2/original_detections"
 
 
 
