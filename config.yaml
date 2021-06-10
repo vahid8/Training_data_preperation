@@ -1,0 +1,10 @@
+# Input Directories
+image_path: "/media/vahid/Elements/Data/sample_images/trimble_pano"
+detection_path: "/media/vahid/Elements/Data/sample_images/trimble_pano_detection"
+output_image_path: "/media/vahid/Elements/Data/sample_images/ready/images"
+output_detection_path: "/media/vahid/Elements/Data/sample_images/ready/texts"
+
+
+
+
+
