@@ -17,7 +17,7 @@ import tqdm
 import yaml
 
 __author__ = "vahid jani"
-__copyright__ = "Copyright 2021, The Blurring Project"
+__copyright__ = "Copyright 2021"
 __credits__ = ["Vahid jani"]
 __license__ = "MIT"
 __version__ = "1.0.0"
@@ -59,7 +59,7 @@ def content_to_pandas(content, img_shape):
 if __name__ == '__main__':
 
     # ----------------------------------------- Read and load the inputs config --------------------------------------------------
-    with open(r'config.yaml') as file:
+    with open(r'prepare_data_for_training_config.yaml') as file:
         config = yaml.load(file, Loader=yaml.FullLoader)
     image_path = config["image_path"]
     detection_path = config["detection_path"]
