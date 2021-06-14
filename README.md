@@ -1,6 +1,5 @@
 # Training_data_preperation
-All handy scripts related to training data preperation and labeling.\n
-Deciption of functions:
+All handy scripts related to training data preperation and labeling. Deciption of functions:
 1. prepare_data_for_training.py: The purpose of this script is to split images and already detected boxes into smaller pieces ready for training with yolo
 ```More description:
 Get the images and detection texts and divide images to smaller parts
@@ -12,4 +11,10 @@ output images : 4 images in 2000*2000 ->image_A_1.jpg,image_A_2.jpg, image_A_3.j
                 im4 = im[1100:3100, 6000:8000]
 input_texts : detection in the original image dimensions
 output_texts :  detections on new image formats
+```
+2. Compare textfiles.py: check if two detction texts are the same or not in case of changed file, it copies both text and image to output folder
+```More description:
+Get the detection texts paths (edited and original ones) and compare the content
+input : edited and original texts dir paths, splitted image dir paths
+output : text ones that are changed (means the model labeling was not ok) and its related images from seperated image dir
 ```
