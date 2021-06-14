@@ -1,6 +1,6 @@
 # Training_data_preperation
 All handy scripts related to training data preperation and labeling. Deciption of functions:
-#### 1. prepare_data_for_training.py: The purpose of this script is to split images and already detected boxes into smaller pieces ready for training with yolo
+#### 1. split_image_detection.py: The purpose of this script is to split images and already detected boxes into smaller pieces ready for training with yolo
 ```More description:
 Get the images and detection texts and divide images to smaller parts
 input image : Trimble MX9 Panorama 8000*400 ->image_A.jpg
