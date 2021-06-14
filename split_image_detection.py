@@ -61,7 +61,7 @@ def content_to_pandas(content, img_shape):
 if __name__ == '__main__':
 
     # ----------------------------------------- Read and load the inputs config --------------------------------------------------
-    with open(r'config.yaml') as file:
+    with open(r'split_image_detection_config.yaml') as file:
         config = yaml.load(file, Loader=yaml.FullLoader)
     image_path = config["image_path"]
     detection_path = config["detection_path"]

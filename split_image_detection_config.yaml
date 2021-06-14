@@ -1,0 +1,12 @@
+# Input Directories
+image_path: "/media/dev2/A/improvements/Datadev/BP40 Pilot_GK5 6207 R/src"
+detection_path: "/media/dev2/A/improvements/Datadev/BP40 Pilot_GK5 6207 R/detections"
+output_image_path: "/media/dev2/A/improvements/improvements_splitted/BP40 Pilot_GK5 6207 R/images"
+output_detection_path: "/media/dev2/A/improvements/improvements_splitted/BP40 Pilot_GK5 6207 R/detections"
+# If you need to split th images as well set create new images to true
+create_new_images: True
+
+
+
+
+
