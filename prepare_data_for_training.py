@@ -33,25 +33,27 @@ def content_to_pandas(content, img_shape):
     cnt = list()
     area = list()
     bbox = list()
-    for num, line in enumerate(content):
-        if len(line) > 1:
-            l = line.split(" ")
-            idx.append(num)
-            cls.append(l[0])  # class_names[content[0]]
-            cnt.append((int(float(l[1]) * img_shape[1]), int(float(l[2]) * img_shape[0])))
-            area.append(int(float(l[3]) * float(l[4]) * img_shape[0] * img_shape[1]))
-            bbox_xstart = int(float(l[1]) * img_shape[1] - float(l[3]) * img_shape[1] / 2)
-            bbox_ystart = int(float(l[2]) * img_shape[0] - float(l[4]) * img_shape[0] / 2)
-            bb = (bbox_xstart, bbox_ystart, bbox_xstart + int(float(l[3]) * img_shape[1]),
-                  bbox_ystart + int(float(l[4]) * img_shape[0]))
-            bbox.append(bb)
-
-    # There is at least one object there
-    if len(idx) > 0:
-        dict = {"idx": idx, "cls": cls, "cnt": cnt, "area": area, "bbox": bbox}
-        df = pd.DataFrame(dict)
-        success = True
-    else:
+    try:
+        for num, line in enumerate(content):
+            if len(line) > 1:
+                l = line.split(" ")
+                idx.append(num)
+                cls.append(l[0])  # class_names[content[0]]
+                cnt.append((int(float(l[1]) * img_shape[1]), int(float(l[2]) * img_shape[0])))
+                area.append(int(float(l[3]) * float(l[4]) * img_shape[0] * img_shape[1]))
+                bbox_xstart = int(float(l[1]) * img_shape[1] - float(l[3]) * img_shape[1] / 2)
+                bbox_ystart = int(float(l[2]) * img_shape[0] - float(l[4]) * img_shape[0] / 2)
+                bb = (bbox_xstart, bbox_ystart, bbox_xstart + int(float(l[3]) * img_shape[1]),
+                      bbox_ystart + int(float(l[4]) * img_shape[0]))
+                bbox.append(bb)
+        # There is at least one object there
+        if len(idx) > 0:
+            dict = {"idx": idx, "cls": cls, "cnt": cnt, "area": area, "bbox": bbox}
+            df = pd.DataFrame(dict)
+            success = True
+        else:
+            df = pd.DataFrame()
+    except:
         df = pd.DataFrame()
 
     return df
@@ -65,7 +67,7 @@ if __name__ == '__main__':
     detection_path = config["detection_path"]
     output_image_path = config["output_image_path"]
     output_detection_path = config["output_detection_path"]
-    create_new_images = False
+    create_new_images = config["output_detection_path"]
 
     zones = [[(0, 1100), (2000, 3100)], [(2000, 1100), (4000, 3100)], [(4000, 1100), (6000, 3100)],
              [(6000, 1100), (8000, 3100)]]
@@ -158,3 +160,5 @@ if __name__ == '__main__':
                                 st += str(s) + " "
 
                             f.write(st + "\n")
+            else:
+                print("following image has no label:", item)

@@ -1,8 +1,10 @@
 # Input Directories
-image_path: "/media/dev2/A/improvements/Datadev/Stadt Essen_2021_2/src"
-detection_path: "/media/dev2/A/improvements/Datadev/Stadt Essen_2021_2/original_detections"
-output_image_path: "/media/dev2/A/improvements/improvements_splitted/Stadt Essen_2021_2/images"
-output_detection_path: "/media/dev2/A/improvements/improvements_splitted/Stadt Essen_2021_2/original_detections"
+image_path: "/media/dev2/A/improvements/Datadev/Stadt Essen_2021_2_20210421/src"
+detection_path: "/media/dev2/A/improvements/Datadev/Stadt Essen_2021_2_20210421/detections"
+output_image_path: "/media/dev2/A/improvements/improvements_splitted/Stadt Essen_2021_2_20210421/images"
+output_detection_path: "/media/dev2/A/improvements/improvements_splitted/Stadt Essen_2021_2_20210421/detections"
+# If you need to split th images as well set create new images to true
+create_new_images: True
 
 
 
