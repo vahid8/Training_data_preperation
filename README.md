@@ -2,13 +2,14 @@
 All handy scripts related to training data preperation and labeling. Deciption of functions:
 - [Split image detection](#Split-image-detection)
 - [Compare textfiles](#Compare-textfiles)
-- [Remove objects label](#Remove-objects-label)
+- [Copy images based](#Copy-images-based)
 
 | name | short description | 
 | --- | --- | 
 | Split image detection | split panorama images and detections to smaller parts |
 | Compare textfiles | check two detctions to identify chnages in labeling  | 
 | Remove objects label | remove extra lables you dont need any more  |
+| Copy images based | Copy the images that have detection texts from one dir to another |
 
 #### Split image detection
 The purpose of this script is to split images and already detected boxes into smaller pieces ready for training with yolo
@@ -36,4 +37,11 @@ remove extra lables you dont need any more for the training from detection texts
 Get the detection texts and remove labels you dont want to be present anymore there
 input : Texts with full labels
 output : Texts with just arbitrary labels rearranged from 0
+```
+#### Copy images based
+Name of script: copy_images_based_on_availbale_detections.py
+Copy the images that have detection texts from one dir to another
+```More description: 
+    input : images and detections paths, output path for images
+    output : None
 ```
