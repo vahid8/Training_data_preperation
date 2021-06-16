@@ -3,7 +3,13 @@ All handy scripts related to training data preperation and labeling. Deciption o
 - [Split image detection](#Split-image-detection)
 - [Compare textfiles](#Compare-textfiles)
 - [Remove objects label](#Remove-objects-label)
-- 
+
+| name | short description | 
+| --- | --- | 
+| Split image detection | split panorama images and detections to smaller parts |
+| Compare textfiles | check two detctions to identify chnages in labeling  | 
+| Remove objects label | remove extra lables you dont need any more  |
+
 #### Split image detection
 The purpose of this script is to split images and already detected boxes into smaller pieces ready for training with yolo
 ```More description:
