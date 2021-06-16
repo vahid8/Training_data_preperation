@@ -5,8 +5,6 @@
 """
 
 import os
-import yaml
-import pandas as pd
 
 __author__ = "vahid jani"
 __copyright__ = "Copyright 2021"
