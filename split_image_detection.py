@@ -33,25 +33,27 @@ def content_to_pandas(content, img_shape):
     cnt = list()
     area = list()
     bbox = list()
-    for num, line in enumerate(content):
-        if len(line) > 1:
-            l = line.split(" ")
-            idx.append(num)
-            cls.append(l[0])  # class_names[content[0]]
-            cnt.append((int(float(l[1]) * img_shape[1]), int(float(l[2]) * img_shape[0])))
-            area.append(int(float(l[3]) * float(l[4]) * img_shape[0] * img_shape[1]))
-            bbox_xstart = int(float(l[1]) * img_shape[1] - float(l[3]) * img_shape[1] / 2)
-            bbox_ystart = int(float(l[2]) * img_shape[0] - float(l[4]) * img_shape[0] / 2)
-            bb = (bbox_xstart, bbox_ystart, bbox_xstart + int(float(l[3]) * img_shape[1]),
-                  bbox_ystart + int(float(l[4]) * img_shape[0]))
-            bbox.append(bb)
-
-    # There is at least one object there
-    if len(idx) > 0:
-        dict = {"idx": idx, "cls": cls, "cnt": cnt, "area": area, "bbox": bbox}
-        df = pd.DataFrame(dict)
-        success = True
-    else:
+    try:
+        for num, line in enumerate(content):
+            if len(line) > 1:
+                l = line.split(" ")
+                idx.append(num)
+                cls.append(l[0])  # class_names[content[0]]
+                cnt.append((int(float(l[1]) * img_shape[1]), int(float(l[2]) * img_shape[0])))
+                area.append(int(float(l[3]) * float(l[4]) * img_shape[0] * img_shape[1]))
+                bbox_xstart = int(float(l[1]) * img_shape[1] - float(l[3]) * img_shape[1] / 2)
+                bbox_ystart = int(float(l[2]) * img_shape[0] - float(l[4]) * img_shape[0] / 2)
+                bb = (bbox_xstart, bbox_ystart, bbox_xstart + int(float(l[3]) * img_shape[1]),
+                      bbox_ystart + int(float(l[4]) * img_shape[0]))
+                bbox.append(bb)
+        # There is at least one object there
+        if len(idx) > 0:
+            dict = {"idx": idx, "cls": cls, "cnt": cnt, "area": area, "bbox": bbox}
+            df = pd.DataFrame(dict)
+            success = True
+        else:
+            df = pd.DataFrame()
+    except:
         df = pd.DataFrame()
 
     return df
@@ -59,12 +61,13 @@ def content_to_pandas(content, img_shape):
 if __name__ == '__main__':
 
     # ----------------------------------------- Read and load the inputs config --------------------------------------------------
-    with open(r'prepare_data_for_training_config.yaml') as file:
+    with open(r'split_image_detection_config.yaml') as file:
         config = yaml.load(file, Loader=yaml.FullLoader)
     image_path = config["image_path"]
     detection_path = config["detection_path"]
     output_image_path = config["output_image_path"]
     output_detection_path = config["output_detection_path"]
+    create_new_images = config["output_detection_path"]
 
     zones = [[(0, 1100), (2000, 3100)], [(2000, 1100), (4000, 3100)], [(4000, 1100), (6000, 3100)],
              [(6000, 1100), (8000, 3100)]]
@@ -76,15 +79,16 @@ if __name__ == '__main__':
         image_name_path = os.path.join(image_path, item)
         detect = os.path.join(detection_path, item[:-3] + "txt")
         im = cv2.imread(image_name_path)
-        im1 = im[1100:3100, 0:2000]
-        im2 = im[1100:3100, 2000:4000]
-        im3 = im[1100:3100, 4000:6000]
-        im4 = im[1100:3100, 6000:8000]
+        if create_new_images:
+            im1 = im[1100:3100, 0:2000]
+            im2 = im[1100:3100, 2000:4000]
+            im3 = im[1100:3100, 4000:6000]
+            im4 = im[1100:3100, 6000:8000]
 
-        cv2.imwrite(os.path.join(output_image_path, item[:-4] + "_1.jpg"), im1)
-        cv2.imwrite(os.path.join(output_image_path, item[:-4] + "_2.jpg"), im2)
-        cv2.imwrite(os.path.join(output_image_path, item[:-4] + "_3.jpg"), im3)
-        cv2.imwrite(os.path.join(output_image_path, item[:-4] + "_4.jpg"), im4)
+            cv2.imwrite(os.path.join(output_image_path, item[:-4] + "_1.jpg"), im1)
+            cv2.imwrite(os.path.join(output_image_path, item[:-4] + "_2.jpg"), im2)
+            cv2.imwrite(os.path.join(output_image_path, item[:-4] + "_3.jpg"), im3)
+            cv2.imwrite(os.path.join(output_image_path, item[:-4] + "_4.jpg"), im4)
         # 3. split texts in 4 texts and in correct positions
         with open(detect) as file:
             content = file.read().split("\n")
@@ -156,3 +160,5 @@ if __name__ == '__main__':
                                 st += str(s) + " "
 
                             f.write(st + "\n")
+            else:
+                print("following image has no label:", item)

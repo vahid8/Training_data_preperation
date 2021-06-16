@@ -1,0 +1,10 @@
+edited_text_path: "/media/dev2/A/improvements/improvements_splitted/Stadt Essen_2021_2/detections"
+original_text_path: "/media/dev2/A/improvements/improvements_splitted/Stadt Essen_2021_2/original_detections"
+splitted_images_path: "/media/dev2/A/improvements/improvements_splitted/Stadt Essen_2021_2/images"
+output_images_dir: "/media/dev2/A/improvements/improvements_splitted/Stadt Essen_2021_2/final/images"
+output_detection_dir: "/media/dev2/A/improvements/improvements_splitted/Stadt Essen_2021_2/final/detections"
+
+
+
+
+
