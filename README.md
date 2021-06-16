@@ -2,6 +2,7 @@
 All handy scripts related to training data preperation and labeling. Deciption of functions:
 - [Split image detection](#Split-image-detection)
 - [Compare textfiles](#Compare-textfiles)
+- [Remove objects label](#Remove-objects-label)
 - [Copy images based](#Copy-images-based)
 
 | name | short description | 
