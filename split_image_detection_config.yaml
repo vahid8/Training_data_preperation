@@ -1,10 +1,12 @@
-# Input Directories
-image_path: "/media/dev2/A/improvements/Datadev/BP40 Pilot_GK5 6207 R/src"
-detection_path: "/media/dev2/A/improvements/Datadev/BP40 Pilot_GK5 6207 R/detections"
-output_image_path: "/media/dev2/A/improvements/improvements_splitted/BP40 Pilot_GK5 6207 R/images"
-output_detection_path: "/media/dev2/A/improvements/improvements_splitted/BP40 Pilot_GK5 6207 R/detections"
-# If you need to split th images as well set create new images to true
-create_new_images: True
+# Input Directory : it should contain 3 folders namely detections,original_detections,images
+input_dir: "/home/datadev/Blurring Stadt Essen/nd/Netherlands project training_4"
+
+# It will create 3 folders inside output dir for splitted images and texts namely detections,original_detections,images
+output_dir: "/home/datadev/Blurring Stadt Essen/nd/Netherlands project training_4_splitted"
+
+# Image size:
+# "4000_8000" or "2400_4800"
+image_size: "2400_4800"
 
 
 

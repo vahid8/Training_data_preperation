@@ -9,6 +9,7 @@ import os
 import filecmp
 import shutil
 import tqdm
+import yaml
 
 __author__ = "vahid jani"
 __copyright__ = "Copyright 2021, The Blurring Project"
@@ -24,13 +25,27 @@ if __name__ == '__main__':
     # ----------------------------------------- Read and load the inputs config --------------------------------------------------
     with open(r'compare_text_files_config.yaml') as file:
         config = yaml.load(file, Loader=yaml.FullLoader)
-    image_path = config["image_path"]
 
-    edited_text_path = config["edited_text_path"]
-    original_text_path = config["original_text_path"]
-    splitted_images_path = config["splitted_images_path"]
-    output_images_dir = config["output_images_dir"]
-    output_detection_dir = config["output_detection_dir"]
+    input_dir = config["input_dir"]
+
+    edited_text_path = os.path.join(input_dir,"detections")
+    original_text_path = os.path.join(input_dir,"original_detections")
+    splitted_images_path = os.path.join(input_dir,"images")
+
+    # Create folders inside output_dir
+    try:
+        os.mkdir(os.path.join(input_dir, "final"))
+    except OSError as error:
+        print(error)
+
+    for item in list(["images", "detections"]):
+        try:
+            os.mkdir(os.path.join(input_dir, "final", item))
+        except OSError as error:
+            print(error)
+
+    output_images_dir = os.path.join(input_dir, "final", "images")
+    output_detection_dir = os.path.join(input_dir, "final", "detections")
 
     editedt_files = [item for item in os.listdir(edited_text_path)]
     original_files = [item for item in os.listdir(original_text_path)]
