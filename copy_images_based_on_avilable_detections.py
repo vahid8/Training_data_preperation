@@ -20,9 +20,9 @@ __status__ = "Development"
 
 if __name__ == '__main__':
     # Define input and output dir paths
-    detections_dir = "/media/vahid/Elements/Softwaress/Flask_blurring/project/static/uploads/vahid/person/detections2"
-    source_images_dir = "/media/vahid/Elements/Softwaress/Flask_blurring/project/static/uploads/vahid/person/src"
-    output_images_dir = "/media/vahid/Elements/Softwaress/Flask_blurring/project/static/uploads/vahid/person/src2"
+    detections_dir = "/home/datadev/Codes/Yolo_training/face_plate/labels/val"
+    source_images_dir = "/home/datadev/Codes/Yolo_training/Blurring/images/val"
+    output_images_dir = "/home/datadev/Codes/Yolo_training/face_plate/images/val"
 
     # Get the name of available texts and convert it to .jpg
     detections = [item[:-3]+"jpg" for item in os.listdir(detections_dir) if item.endswith(".txt")]

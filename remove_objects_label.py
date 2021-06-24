@@ -18,8 +18,8 @@ __status__ = "Development"
 
 if __name__ == '__main__':
     # Define input and output dir paths
-    detections_input_dir = "/media/vahid/Elements/Softwaress/Flask_blurring/project/static/uploads/vahid/person/detections"
-    detections_output_dir = "/media/vahid/Elements/Softwaress/Flask_blurring/project/static/uploads/vahid/person/detections2"
+    detections_input_dir = "/home/datadev/Codes/web/flask_blurring/project/static/uploads/labeling/Stadt Essen_2021_2_20200818/detections"
+    detections_output_dir = "/home/datadev/Codes/web/flask_blurring/project/static/uploads/labeling/Stadt Essen_2021_2_20200818/detections2"
 
     detections = [os.path.join(detections_input_dir, item) for item in os.listdir(detections_input_dir) if item.endswith(".txt")]
 

@@ -15,9 +15,9 @@ def change_txt_names(path,today):
 
 if __name__ == '__main__':
     today = date.today()
-    images_path = "/media/vahid/Data/DataDev/Marko/Labels/images/Run_2 Camera 4 360"
-    txt_path = "/media/vahid/Data/DataDev/Marko/Labels/images/Run_2 Camera 4 360"
+    images_path = "/home/datadev/Codes/Yolo_training/New_dataset/images"
+    txt_path = "/home/datadev/Codes/Yolo_training/New_dataset/labels"
 
-    #change_image_names(images_path, today)
+    change_image_names(images_path, today)
     change_txt_names(txt_path, today)
 
