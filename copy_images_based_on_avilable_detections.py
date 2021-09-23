@@ -18,6 +18,18 @@ __maintainer__ = "Vahid jani"
 __email__ = "aghajanivahid1@gmail.com"
 __status__ = "Development"
 
+# def copy_not_available():
+#     img_dir_all = "/home/datadev/Codes/Yolo_training/face_plate_00_NV/img"
+#     img_dir_not_complete = "/home/datadev/Codes/Yolo_training/face_plate_NV/img"
+#     txt_dir_all = "/home/datadev/Codes/Yolo_training/face_plate_00_NV/txt"
+#     output_dir = "/media/vahid/Elements/Data/sample_images/sample_detections/n_txt"
+#     # Get list of images in both
+#     images_all = [item for item in os.listdir(img_dir_all)]
+#     img_not_complete = [item for item in os.listdir(img_dir_not_complete)]
+#     for item in images_all:
+#         if item not in img_not_complete:
+#             copyfile(os.path.join(img_dir_all, item), os.path.join(output_dir,"img", item))
+#             copyfile(os.path.join(txt_dir_all, os.path.splitext(item)[0]+".txt"), os.path.join(output_dir, "txt", os.path.splitext(item)[0]+".txt"))
 
 if __name__ == '__main__':
     # Define input and output dir paths
