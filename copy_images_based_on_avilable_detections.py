@@ -6,6 +6,7 @@
 
 import os
 from shutil import copyfile
+import tqdm
 
 
 __author__ = "vahid jani"
@@ -20,16 +21,24 @@ __status__ = "Development"
 
 if __name__ == '__main__':
     # Define input and output dir paths
-    detections_dir = "/home/datadev/Codes/Yolo_training/face_plate/labels/val"
-    source_images_dir = "/home/datadev/Codes/Yolo_training/Blurring/images/val"
-    output_images_dir = "/home/datadev/Codes/Yolo_training/face_plate/images/val"
+    detections_dir = "/media/vahid/Elements/Data/sample_images/sample_detections/texts"
+    source_images_dir = "/media/vahid/Elements/Data/sample_images/sample_detections/img"
+    output_images_dir = "/media/vahid/Elements/Data/sample_images/sample_detections/n_img"
+    output_text_dir = "/media/vahid/Elements/Data/sample_images/sample_detections/n_txt"
 
     # Get the name of available texts and convert it to .jpg
-    detections = [item[:-3]+"jpg" for item in os.listdir(detections_dir) if item.endswith(".txt")]
+    detections = [os.path.splitext(item)[0] for item in os.listdir(detections_dir) if item.endswith(".txt")]
 
     # Get the name of available images inside source dir
-    images = [item for item in os.listdir(source_images_dir) if item.endswith(".jpg")]
+    images = [item for item in os.listdir(source_images_dir) if item.endswith(".jpg")
+              or item.endswith(".jpeg") or item.endswith(".png")  or item.endswith(".JPEG")]
 
-    for detect in detections:
-        if detect in images: # check if the image is available there
-            copyfile(os.path.join(source_images_dir,detect),os.path.join(output_images_dir,detect))
+    for image in tqdm.tqdm(images):
+        if os.path.splitext(image)[0] in detections: # check if the image has a detection
+            copyfile(os.path.join(source_images_dir,image),os.path.join(output_images_dir,image))
+            copyfile(os.path.join(detections_dir, os.path.splitext(image)[0]+".txt"), os.path.join(output_text_dir, os.path.splitext(image)[0]+".txt"))
+
+    images_number = len([item for item in os.listdir(output_images_dir)])
+    text_number = len([item for item in os.listdir(output_images_dir)])
+    print("Number of images: {}".format(images_number))
+    print("Number of texts: {}".format(text_number))
