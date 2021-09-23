@@ -1,0 +1,12 @@
+# Input Directories
+images_folders: "/media/vahid/Elements/Data/sample_images/sample_detections/img"
+detection_folder: "/media/vahid/Elements/Data/sample_images/sample_detections/texts"
+classes_txt_path: "/media/vahid/Elements/Data/sample_images/sample_detections/classes.txt"
+
+cores: 2
+# Output Directories to save the images
+DIR_OUT: "/media/vahid/Elements/Data/sample_images/sample_detections/out"
+
+
+
+
