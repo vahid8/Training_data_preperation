@@ -8,7 +8,7 @@ All handy scripts related to training data preperation and labeling. Deciption o
 | name | short description | 
 | --- | --- | 
 | Split image detection | split panorama images and detections to smaller parts |
-| Compare textfiles | check two detctions to identify chnages in labeling  | 
+| Compare textfiles | check two detctions to identify changes in labeling  | 
 | Remove objects label | remove extra lables you dont need any more  |
 | Copy images based | Copy the images that have detection texts from one dir to another |
 
