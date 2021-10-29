@@ -4,6 +4,7 @@ All handy scripts related to training data preperation and labeling. Deciption o
 - [Compare textfiles](#Compare-textfiles)
 - [Remove objects label](#Remove-objects-label)
 - [Copy images based](#Copy-images-based)
+- [Train Val splitter](#train-val-splitter)
 
 | name | short description | 
 | --- | --- | 
@@ -11,6 +12,7 @@ All handy scripts related to training data preperation and labeling. Deciption o
 | Compare textfiles | check two detctions to identify changes in labeling  | 
 | Remove objects label | remove extra lables you dont need any more  |
 | Copy images based | Copy the images that have detection texts from one dir to another |
+| Train val splitter | split one folder containg image folder and label folder to two new folder with train and val dataset  |
 
 #### Split image detection
 The purpose of this script is to split images and already detected boxes into smaller pieces ready for training with yolo
@@ -44,5 +46,12 @@ Name of script: copy_images_based_on_availbale_detections.py
 Copy the images that have detection texts from one dir to another
 ```More description: 
     input : images and detections paths, output path for images
+    output : None
+```
+#### Copy images based
+Name of script: train_val_splitter.py
+split one folder containg image folder and label folder to two new folder with train and val dataset 
+```More description: 
+    input : input and output dir
     output : None
 ```
