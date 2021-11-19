@@ -1,6 +1,6 @@
-#!/bin/bash         
-input_dir="/home/datadev/Codes/Yolo_training/New_dataset/images"
-output_dir="/home/datadev/Codes/Yolo_training/face_plate/images/train"
+#!/bin/bash        
+input_dir="/media/vahid/Elements/Data/blurring_training_data/series1_1/detections"
+output_dir="/media/vahid/Elements/Data/blurring_training_data//labels"
 echo 1.Input dir: $input_dir
 echo 2.Number of files inside input dir : $(ls $input_dir | wc -l)
 
