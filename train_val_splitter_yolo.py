@@ -66,15 +66,19 @@ def split_data(config:Dict,val_percentage:int=0.1) -> None:
     #  print out the result:
     if len(images_without_label) > 0:
         print(f" number of images without label are {len(images_without_label)}")
+        print(*images_without_label)
     else:
         print("All images have a correspondence txt file")
-        print(*images_without_label)
 
     if len(labels_without_images) > 0:
         print(f" number of txt without images are {len(labels_without_images)}")
         print(*labels_without_images)
     else:
         print("All txt files have a correspondence images file")
+
+    # Exclude images without label
+    images = [item for item in images if os.path.splitext(item)[0] in label_names_base]
+
 
     # Create Val and train output folder
     parent_train_dir = os.path.join(config.get("output_dir"), "train")
@@ -115,6 +119,6 @@ def split_data(config:Dict,val_percentage:int=0.1) -> None:
 # -------------------------------------------------
 if __name__ == '__main__':
     config = {}
-    config["input_dir"] = "/media/vahid/Elements/Data/blurring_training_data"
-    config["output_dir"] = "/media/vahid/Elements/Data/yolo_face_plate_dataset"
+    config["input_dir"] = "/media/vahid/Elements/Data/Training data_2"
+    config["output_dir"] = "/media/vahid/Elements/Data/yolo_face_plate_dataset/new_data"
     split_data(config,val_percentage=0.1)
