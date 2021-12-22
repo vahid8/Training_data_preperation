@@ -5,6 +5,8 @@ All handy scripts related to training data preperation and labeling. Deciption o
 - [Remove objects label](#Remove-objects-label)
 - [Copy images based](#Copy-images-based)
 - [Train Val splitter](#train-val-splitter)
+- [check label image files](#check-label-image-files)
+- [read change json labels](#read-change-json-labels)
 
 | name | short description | 
 | --- | --- | 
@@ -13,6 +15,8 @@ All handy scripts related to training data preperation and labeling. Deciption o
 | Remove objects label | remove extra lables you dont need any more  |
 | Copy images based | Copy the images that have detection texts from one dir to another |
 | Train val splitter | split one folder containg image folder and label folder to two new folder with train and val dataset  |
+| check label image files | print out num of images and labels + print out which image has no txt file + which txt has no image  |
+| read change json labels | read segmentation labels in json format to see if there is an unwanted label also change them if needed|
 
 #### Split image detection
 The purpose of this script is to split images and already detected boxes into smaller pieces ready for training with yolo
