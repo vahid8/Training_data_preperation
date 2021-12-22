@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Create two folders of train and val from one input folder
+Create two folders of train and val from one input folder of train and val
 """
 import os
 
@@ -36,7 +36,7 @@ def split_data(config:Dict,val_percentage:int=0.1) -> None:
     """
     image_in_path = os.path.join(config.get("input_dir"),"images")
     label_in_path = os.path.join(config.get("input_dir"),"labels")
-    # Get all data in images and labels
+    # Get all data in images band labels
     images = [item for item in os.listdir(image_in_path) if item.endswith(".jpg")]
     labels = [item for item in os.listdir(label_in_path) if item.endswith(".json")]
     print(f"Number of images, labels: {len(images)},{len(labels)}")
@@ -88,6 +88,6 @@ def split_data(config:Dict,val_percentage:int=0.1) -> None:
 # -------------------------------------------------
 if __name__ == '__main__':
     config = {}
-    config["input_dir"] = "/media/vahid/Elements/Data/segmentation_training/series1"
-    config["output_dir"] = "/media/vahid/Elements/Data/segmentation_training/splitted"
-    split_data(config,val_percentage=0.1)
+    config["input_dir"] = "/home/tower/Codes/surface_segmentation_data/final_data"
+    config["output_dir"] = "/home/tower/Codes/surface_segmentation_data/splitted"
+    split_data(config,val_percentage=0.15)
