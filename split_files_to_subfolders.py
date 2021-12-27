@@ -21,9 +21,9 @@ __status__ = "Development"
 
 if __name__ == '__main__':
     # Define input and output dir paths
-    detections_dir = "/media/vahid/Elements/Data/sample_images/trimble_pano_detection"
-    source_images_dir = "/media/vahid/Elements/Data/sample_images/trimble_pano"
-    output_dir = "/media/vahid/Elements/Data/sample_images/tt/"
+    detections_dir = "/media/vahid/Elements/Data/GE_signs_training_data/Traffic_sign_GE/all_labels"
+    source_images_dir = "/media/vahid/Elements/Data/GE_signs_training_data/Traffic_sign_GE/all_images"
+    output_dir = "/media/vahid/Elements/Data/GE_signs_training_data/Traffic_sign_GE/splitted_1000"
 
     # Get the name of available images inside source dir
     images = [item for item in os.listdir(source_images_dir) if item.endswith(".jpg")

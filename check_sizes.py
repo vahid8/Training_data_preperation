@@ -1,10 +1,9 @@
 import cv2
 import os,shutil
-
 import tqdm
 
 if __name__ == '__main__':
-    image_dir = "/media/vahid/Elements/Softwaress/Training_data_preperation/0_2/img_out"
+    image_dir = "/media/vahid/Elements/Data/GE_signs_training_data/Traffic_sign_GE/images"
 
     images = [item for item in os.listdir(image_dir)]
     print("Number of files inside this folder : {}".format(len(images)))

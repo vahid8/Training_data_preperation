@@ -83,11 +83,12 @@ def change_label(src_text_path, img_shape, out_txt):
             print("Warning : this image has no detection {}".format(os.path.basename(src_text_path)))
 
 if __name__ == '__main__':
-    image_dir = "/media/vahid/Elements/Softwaress/Training_data_preperation/0_2/img"
-    detection_dir = "/media/vahid/Elements/Softwaress/Training_data_preperation/0_2/txt"
-    output_img = "/media/vahid/Elements/Softwaress/Training_data_preperation/0_2/img_out/"
-    output_txt = "/media/vahid/Elements/Softwaress/Training_data_preperation/0_2/txt_out/"
-    images = [item for item in os.listdir(image_dir)]
+    image_dir = "/media/vahid/Elements/Data/GE_signs_training_data/Traffic_sign_GE/images_2048"
+    detection_dir = "/media/vahid/Elements/Data/GE_signs_training_data/Traffic_sign_GE/labels_2048"
+    output_img = "/media/vahid/Elements/Data/GE_signs_training_data/Traffic_sign_GE/test/images"
+    output_txt = "/media/vahid/Elements/Data/GE_signs_training_data/Traffic_sign_GE/test/labels"
+    images = [item for item in os.listdir(image_dir) if item.endswith(".jpg") or item.endswith(".png")
+              or item.endswith(".jpeg")]
 
     print("Number of files inside this folder : {}".format(len(images)))
 
@@ -96,9 +97,12 @@ if __name__ == '__main__':
     for item in tqdm.tqdm(images):
         # try:
             img = cv2.imread(os.path.join(image_dir,item))
-            if img.shape != (2000,2000):
+            if img.shape != (2000,2000,3):
                 #change the lable
-                change_label(os.path.join(detection_dir,os.path.splitext(item)[0]+".txt"),img.shape,output_txt)
+                try:
+                    change_label(os.path.join(detection_dir,os.path.splitext(item)[0]+".txt"),img.shape,output_txt)
+                except FileNotFoundError:
+                    pass
                 #change the image
                 img = img[0:2000,0:2000]
                 cv2.imwrite(os.path.join(output_img,item),img)
