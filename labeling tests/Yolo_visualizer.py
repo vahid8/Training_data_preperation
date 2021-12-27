@@ -1,4 +1,4 @@
-import os
+import os,shutil
 import pandas as pd
 import cv2
 from tqdm import tqdm
@@ -55,8 +55,7 @@ def draw_label_on_image(classes_array,cls_path,cls_images,img1, row):
     return img1
 
 
-
-if __name__ == '__main__':
+def main():
     # //////////////////////////  Read the yaml file /////////////////////////////
     with open(r'config.yaml') as file:
         config = yaml.load(file, Loader=yaml.FullLoader)
@@ -65,26 +64,26 @@ if __name__ == '__main__':
     source_img_folder = config["images_folders"]
     labels_folder = config["detection_folder"]
     classes_path = config["classes_txt_path"]
-    output_path = os.path.join(config["DIR_OUT"],"all_images")
+    output_path = os.path.join(config["DIR_OUT"], "all_images")
 
+    if os.path.exists(output_path):
+        shutil.rmtree(output_path)  # delete output folder
+    os.makedirs(output_path)  # make new output folder
 
-
-    classes_array = np.loadtxt(classes_path,dtype=str)
+    classes_array = np.loadtxt(classes_path, dtype=str)
 
     images = [item for item in os.listdir(source_img_folder) if item.endswith('.jpg')]
     txts = [item for item in os.listdir(labels_folder) if item.endswith('.txt')]
 
-
     print("Total images :{}".format(len(images)))
-    print("Total texts :{}".format(len(txts)-1))
+    print("Total texts :{}".format(len(txts) - 1))
 
-
-    for item in tqdm(images,desc ="In Progress"):
+    for item in tqdm(images, desc="In Progress"):
         # Get the image Shape:
         img = cv2.imread(source_img_folder + "/" + item)
         # check if the image has labels
         if item[:-3] + "txt" in txts:
-            with open(labels_folder+"/"+item[:-3] + "txt", "r") as f:
+            with open(labels_folder + "/" + item[:-3] + "txt", "r") as f:
                 content = f.read().split("\n")
                 df = content_to_pandas(content, img.shape)
                 if len(df) > 0:
@@ -92,20 +91,23 @@ if __name__ == '__main__':
                     for index, row in df.iterrows():
                         # Get color
                         if row.cls == "0":
-                            color = (204,0,77)
+                            color = (204, 0, 77)
                         elif row.cls == "1":
                             color = (204, 0, 153)
                         elif row.cls == "2":
                             color = (160, 80, 0)
                         elif row.cls == "3":
-                            color = (0,0, 255)
+                            color = (0, 0, 255)
 
-                        img = cv2.rectangle(img, (row.bbox[0], row.bbox[1]),(row.bbox[0] + row.bbox[2], row.bbox[1] + row.bbox[3]),color, 3, cv2.LINE_4)
+                        img = cv2.rectangle(img, (row.bbox[0], row.bbox[1]),
+                                            (row.bbox[0] + row.bbox[2], row.bbox[1] + row.bbox[3]), color, 3,
+                                            cv2.LINE_4)
                 else:
                     pass
 
-
-
         cv2.imwrite(os.path.join(output_path, item), img)
+
+if __name__ == '__main__':
+    main()
 
 

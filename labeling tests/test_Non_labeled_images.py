@@ -29,7 +29,7 @@ def show_image_plt(output_folder,title: str,img_path, iter):
     plt.savefig(os.path.join(output_folder,iter+".png"))
     plt.close()
 
-if __name__ == '__main__':
+def main():
 
     # //////////////////////////  Read the yaml file /////////////////////////////
     with open(r'config.yaml') as file:
@@ -40,7 +40,9 @@ if __name__ == '__main__':
     txt_folders = config["detection_folder"]
     output_folder = os.path.join(config["DIR_OUT"], "no_label")
 
-
+    if os.path.exists(output_folder):
+        shutil.rmtree(output_folder)  # delete output folder
+    os.makedirs(output_folder)  # make new output folder
 
     images_without_label = True #False
 
@@ -86,3 +88,6 @@ if __name__ == '__main__':
 # move them to a new folder
 #for image,name in zip(only_images,only_images_names):
 #    shutil.move(image, folder_path+"/img/"+name)
+
+if __name__ == '__main__':
+    main()
