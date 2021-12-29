@@ -33,10 +33,10 @@ __status__ = "Development"
 
 if __name__ == '__main__':
     # Define input and output dir paths
-    detections_dir = "/media/vahid/Elements/Data/sample_images/sample_detections/texts"
-    source_images_dir = "/media/vahid/Elements/Data/sample_images/sample_detections/img"
-    output_images_dir = "/media/vahid/Elements/Data/sample_images/sample_detections/n_img"
-    output_text_dir = "/media/vahid/Elements/Data/sample_images/sample_detections/n_txt"
+    detections_dir = "/media/vahid/Elements/Data/GE_signs_training_data/Traffic_sign_GE/labels"
+    source_images_dir = "/media/vahid/Elements/Data/GE_signs_training_data/Traffic_sign_GE/images"
+    output_images_dir = "/media/vahid/Elements/Data/GE_signs_training_data/Traffic_sign_GE/all_images"
+    output_text_dir = "/media/vahid/Elements/Data/GE_signs_training_data/Traffic_sign_GE/all_labels"
 
     # Get the name of available texts and convert it to .jpg
     detections = [os.path.splitext(item)[0] for item in os.listdir(detections_dir) if item.endswith(".txt")]
