@@ -8,6 +8,7 @@ import multiprocessing
 import numpy as np
 
 
+
 def create_code_base_data(image_path,txt_path,classes_txt_path):
 
     # read all txt files
@@ -119,18 +120,20 @@ def main():
     df = create_code_base_data(image_path,txt_path,classes_txt_path)
 
     #2. divide df to list dfs with 25 rows
-    df_lists = np.array_split(df, cores)
+    # cores = 1
+    # df_lists = np.array_split(df, cores)
 
-    print("dividing {} labels into {} cores -> Creating {} image per core and total {} images".format(len(df),cores,int(len(df)/(cores*25)),int(len(df)/25)))
-    jobs = []
-    for i in range(cores):
-        p = multiprocessing.Process(target=plot_codes, args=(i,output_folder,df_lists[i],))
-        jobs.append(p)
-        p.start()
-
-    # Make sure that process are closed
-    for i in range(cores):
-        jobs[i].join()
+    plot_codes(0,output_folder,df)
+    # print("dividing {} labels into {} cores -> Creating {} image per core and total {} images".format(len(df),cores,int(len(df)/(cores*25)),int(len(df)/25)))
+    # jobs = []
+    # for i in range(cores):
+    #     p = multiprocessing.Process(target=plot_codes, args=(i,output_folder,df_lists[i],))
+    #     jobs.append(p)
+    #     p.start()
+    #
+    # # Make sure that process are closed
+    # for i in range(cores):
+    #     jobs[i].join()
 
 if __name__ == '__main__':
     main()

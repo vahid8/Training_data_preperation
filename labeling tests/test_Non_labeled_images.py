@@ -85,9 +85,9 @@ def main():
             show_image_plt(output_folder, "Images with no label", img_path,iter=str(i))
 
 
-# move them to a new folder
-#for image,name in zip(only_images,only_images_names):
-#    shutil.move(image, folder_path+"/img/"+name)
+    # move them to a new folder
+    for image,name in zip(only_images,only_images_names):
+       shutil.move(image, os.path.join(output_folder, name))
 
 if __name__ == '__main__':
     main()

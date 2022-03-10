@@ -1,11 +1,11 @@
 # Input Directories
-images_folders: "/media/vahid/Elements/Data/GE_signs_training_data/Traffic_sign_GE/splitted_1000/0/img"
-detection_folder: "/media/vahid/Elements/Data/GE_signs_training_data/Traffic_sign_GE/splitted_1000/0/txt"
-classes_txt_path: "/media/vahid/Elements/Data/GE_signs_training_data/Traffic_sign_GE/splitted_1000/0/txt/classes.txt"
+images_folders: "/media/vahid/Elements/Data/GE_signs_training_data/Traffic_sign_GE/all_images_new"
+detection_folder: "/media/vahid/Elements/Data/GE_signs_training_data/Traffic_sign_GE/all_labels_new"
+classes_txt_path: "/media/vahid/Elements/Data/GE_signs_training_data/Traffic_sign_GE/all_labels_new/classes.txt"
 
-cores: 1
+cores: 4
 # Output Directories to save the images
-DIR_OUT: "/media/vahid/Elements/Data/GE_signs_training_data/Traffic_sign_GE/splitted_1000/test"
+DIR_OUT: "/media/vahid/Elements/Data/GE_signs_training_data/Traffic_sign_GE/out_test"
 
 
 
