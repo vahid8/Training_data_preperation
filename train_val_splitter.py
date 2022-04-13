@@ -23,7 +23,7 @@ __status__ = "Development"
 # -------------------------------------------------
 # Functions
 # -------------------------------------------------
-def split_data(config:Dict,val_percentage:int=0.1) -> None:
+def split_data(config:Dict,val_percentage:int=0.1, detection_format=".txt") -> None:
     """
     Split data to two folder naming train and val
     ----------
@@ -34,13 +34,13 @@ def split_data(config:Dict,val_percentage:int=0.1) -> None:
     --------
     None
     """
-    image_in_path = os.path.join(config.get("input_dir"),"images")
-    label_in_path = os.path.join(config.get("input_dir"),"labels")
+    image_in_path = os.path.join(config.get("input_dir"), "images")
+    label_in_path = os.path.join(config.get("input_dir"), "labels")
     # Get all data in images band labels
     images = [item for item in os.listdir(image_in_path) if item.endswith(".jpg")]
-    labels = [item for item in os.listdir(label_in_path) if item.endswith(".json")]
+    labels = [item for item in os.listdir(label_in_path) if item.endswith(detection_format)]
     print(f"Number of images, labels: {len(images)},{len(labels)}")
-    labels_raw_name = [item[:-4] for item in labels]
+    labels_raw_name = [item[:-3] for item in labels]
     missing_labels = list()
     # Check the files
     for item in images:
@@ -70,16 +70,16 @@ def split_data(config:Dict,val_percentage:int=0.1) -> None:
     val_images = images[:val_num]
     train_images = images[val_num:]
     for item in tqdm.tqdm(train_images, desc="Copy train data"):
-        copyfile(os.path.join(image_in_path,item),
-                 os.path.join(train_images_out,item))
-        copyfile(os.path.join(label_in_path,item[:-3]+"json"),
-                 os.path.join(train_labels_out,item[:-3]+"json"))
+        copyfile(os.path.join(image_in_path, item),
+                 os.path.join(train_images_out, item))
+        copyfile(os.path.join(label_in_path, item[:-4]+ detection_format),
+                 os.path.join(train_labels_out, item[:-4]+ detection_format))
 
     for item in tqdm.tqdm(val_images, desc="Copy val data"):
-        copyfile(os.path.join(image_in_path,item),
-                 os.path.join(val_images_out,item))
-        copyfile(os.path.join(label_in_path,item[:-3]+"json"),
-                 os.path.join(val_labels_out,item[:-3]+"json"))
+        copyfile(os.path.join(image_in_path, item),
+                 os.path.join(val_images_out, item))
+        copyfile(os.path.join(label_in_path, item[:-4] + detection_format),
+                 os.path.join(val_labels_out, item[:-4] + detection_format))
 
 
 
@@ -88,6 +88,6 @@ def split_data(config:Dict,val_percentage:int=0.1) -> None:
 # -------------------------------------------------
 if __name__ == '__main__':
     config = {}
-    config["input_dir"] = "/home/tower/Codes/surface_segmentation_data/final_data"
-    config["output_dir"] = "/home/tower/Codes/surface_segmentation_data/splitted"
-    split_data(config,val_percentage=0.15)
+    config["input_dir"] = "/home/tower/Codes/data/German_signs"
+    config["output_dir"] = "/home/tower/Codes/data/German_signs/splitted"
+    split_data(config, val_percentage=0.05, detection_format=".txt")
